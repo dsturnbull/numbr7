@@ -1,39 +1,40 @@
 describe 'Numbr7'
     before
-        Client = new Numbr7();
-        Client.config = {
-            host: 'irc.meobets.com',
-            port: 6667,
-            chan: '#numbr7',
-            nick: 'numbr7'
-        }
+        bot = new Numbr7();
+        bot.server.messages = new Array();
+        bot.server.received = new Array();
+        bot.server.send     = function(m) { this.received.push(m); };
+        bot.config.host     = 'irc.meobets.com';
+        bot.config.port     = 6667;
+        bot.config.chan     = '#numbr7';
+        bot.config.nick     = 'numbr7';
     end
 
     describe 'config'
         it 'should have a config'
-            Client.config.should_not.be_null
+            bot.config.should_not.be_null
         end
 
         it 'should have a configured host'
-            Client.config.host.should.eql 'irc.meobets.com'
+            bot.config.host.should.eql 'irc.meobets.com'
         end
 
         it 'should have a configured port'
-            Client.config.port.should.eql 6667
+            bot.config.port.should.eql 6667
         end
 
         it 'should have a configured channel'
-            Client.config.chan.should.eql '#numbr7'
+            bot.config.chan.should.eql '#numbr7'
         end
 
         it 'should have a configured nick'
-            Client.config.nick.should.eql 'numbr7'
+            bot.config.nick.should.eql 'numbr7'
         end
     end
 
-    describe 'communication'
+    describe 'communication (for real)'
         it 'should open a socket to the server'
-            Client.server.connect()
+            bot.server.connect();
         end
     end
 end
