@@ -11,7 +11,7 @@ describe 'Numbr7'
     end
 
     describe 'when ircing'
-        it 'processes messages read from the server'
+        it 'should process messages read from the server'
             client.server.messages.push('hi')
             client.client.process()
             client.client.processed.should.include 'hi'
